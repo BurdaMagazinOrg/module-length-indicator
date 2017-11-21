@@ -134,9 +134,6 @@ function thunder_indicator_field_widget_form_alter(&$element, FormStateInterface
       $element['value']['#attributes']['class'][] = 'length-indicator-enabled';
 
       $indicator_opt = $context['widget']->getThirdPartySetting('thunder_indicator', 'indicator_opt');
-      $element['value']['#attributes']['data-optimin'] = $indicator_opt['optimin'];
-      $element['value']['#attributes']['data-optimax'] = $indicator_opt['optimax'];
-      $element['value']['#attributes']['data-tolerance'] = $indicator_opt['tolerance'];
       $element['value']['#attributes']['data-total'] = $indicator_opt['optimin'] + $indicator_opt['optimax'];
 
       $element['thunder_indicator'] = [
