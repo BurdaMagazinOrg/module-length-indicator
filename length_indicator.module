@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Thunder Indicator module hooks.
+ * Length Indicator module hooks.
  */
 
 use Drupal\Core\Form\FormStateInterface;
@@ -12,9 +12,9 @@ use Drupal\Core\Field\WidgetInterface;
 /**
  * Implements hook_theme().
  */
-function thunder_indicator_theme($existing, $type, $theme, $path) {
+function length_indicator_theme($existing, $type, $theme, $path) {
   return [
-    'thunder_indicator' => [
+    'length_indicator' => [
       'variables' => [
         'indicators' => [],
       ],
@@ -25,14 +25,14 @@ function thunder_indicator_theme($existing, $type, $theme, $path) {
 /**
  * Implements hook_field_widget_third_party_settings_form().
  */
-function thunder_indicator_field_widget_third_party_settings_form(WidgetInterface $plugin, FieldDefinitionInterface $field_definition, $form_mode, $form, FormStateInterface $form_state) {
+function length_indicator_field_widget_third_party_settings_form(WidgetInterface $plugin, FieldDefinitionInterface $field_definition, $form_mode, $form, FormStateInterface $form_state) {
   $element = [];
 
   if ($plugin->getPluginId() == 'string_textfield') {
     $element['indicator'] = [
       '#type' => 'checkbox',
       '#title' => t('Length indicator'),
-      '#default_value' => $plugin->getThirdPartySetting('thunder_indicator', 'indicator'),
+      '#default_value' => $plugin->getThirdPartySetting('length_indicator', 'indicator'),
     ];
 
     $element['indicator_opt'] = [
@@ -40,14 +40,14 @@ function thunder_indicator_field_widget_third_party_settings_form(WidgetInterfac
       '#title' => t('Length indicator settings'),
       '#states' => [
         'visible' => [
-          ':input[name="fields[' . $field_definition->getName() . '][settings_edit_form][third_party_settings][thunder_indicator][indicator]"]' => [
+          ':input[name="fields[' . $field_definition->getName() . '][settings_edit_form][third_party_settings][length_indicator][indicator]"]' => [
             'checked' => TRUE,
           ],
         ],
       ],
     ];
 
-    $indicator_opt = $plugin->getThirdPartySetting('thunder_indicator', 'indicator_opt');
+    $indicator_opt = $plugin->getThirdPartySetting('length_indicator', 'indicator_opt');
 
     $element['indicator_opt']['optimin'] = [
       '#type' => 'number',
@@ -63,7 +63,7 @@ function thunder_indicator_field_widget_third_party_settings_form(WidgetInterfac
       '#default_value' => isset($indicator_opt['optimax']) ? $indicator_opt['optimax'] : 15,
       '#required' => TRUE,
       '#min' => 5,
-      '#element_validate' => ['_thunder_indicator_settings_optimax'],
+      '#element_validate' => ['_length_indicator_settings_optimax'],
     ];
 
     $element['indicator_opt']['tolerance'] = [
@@ -72,7 +72,7 @@ function thunder_indicator_field_widget_third_party_settings_form(WidgetInterfac
       '#default_value' => isset($indicator_opt['tolerance']) ? $indicator_opt['tolerance'] : 5,
       '#required' => TRUE,
       '#min' => 0,
-      '#element_validate' => ['_thunder_indicator_settings_tolerance'],
+      '#element_validate' => ['_length_indicator_settings_tolerance'],
     ];
 
   }
@@ -87,7 +87,7 @@ function thunder_indicator_field_widget_third_party_settings_form(WidgetInterfac
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The state of the form.
  */
-function _thunder_indicator_settings_optimax(array $element, FormStateInterface &$form_state) {
+function _length_indicator_settings_optimax(array $element, FormStateInterface &$form_state) {
   $parents = array_slice($element['#parents'], 0, -1);
   $indicator_opt = $form_state->getValue($parents);
 
@@ -104,7 +104,7 @@ function _thunder_indicator_settings_optimax(array $element, FormStateInterface 
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *   The state of the form.
  */
-function _thunder_indicator_settings_tolerance(array $element, FormStateInterface &$form_state) {
+function _length_indicator_settings_tolerance(array $element, FormStateInterface &$form_state) {
   $parents = array_slice($element['#parents'], 0, -1);
   $indicator_opt = $form_state->getValue($parents);
 
@@ -116,9 +116,9 @@ function _thunder_indicator_settings_tolerance(array $element, FormStateInterfac
 /**
  * Implements hook_field_widget_settings_summary_alter().
  */
-function thunder_indicator_field_widget_settings_summary_alter(&$summary, $context) {
+function length_indicator_field_widget_settings_summary_alter(&$summary, $context) {
   if ($context['widget']->getPluginId() == 'string_textfield') {
-    $inidcator = $context['widget']->getThirdPartySetting('thunder_indicator', 'indicator');
+    $inidcator = $context['widget']->getThirdPartySetting('length_indicator', 'indicator');
     $indicator_string = $inidcator ? 'On' : 'Off';
     $summary[] = 'Length indicator: ' . $indicator_string;
   }
@@ -127,18 +127,18 @@ function thunder_indicator_field_widget_settings_summary_alter(&$summary, $conte
 /**
  * Implements hook_field_widget_form_alter().
  */
-function thunder_indicator_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+function length_indicator_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
   if ($context['widget']->getPluginId() == 'string_textfield') {
-    if ($context['widget']->getThirdPartySetting('thunder_indicator', 'indicator')) {
-      $element['#attached']['library'][] = 'thunder_indicator/length_indicator';
+    if ($context['widget']->getThirdPartySetting('length_indicator', 'indicator')) {
+      $element['#attached']['library'][] = 'length_indicator/length_indicator';
       $element['value']['#attributes']['class'][] = 'length-indicator-enabled';
 
-      $indicator_opt = $context['widget']->getThirdPartySetting('thunder_indicator', 'indicator_opt');
+      $indicator_opt = $context['widget']->getThirdPartySetting('length_indicator', 'indicator_opt');
       $element['value']['#attributes']['data-total'] = $indicator_opt['optimin'] + $indicator_opt['optimax'];
 
-      $element['thunder_indicator'] = [
-        '#theme' => 'thunder_indicator',
-        '#indicators' => _thunder_indicator_get_width_and_pos(
+      $element['length_indicator'] = [
+        '#theme' => 'length_indicator',
+        '#indicators' => _length_indicator_get_width_and_pos(
           $indicator_opt['optimin'],
           $indicator_opt['optimax'],
           $indicator_opt['tolerance']
@@ -161,7 +161,7 @@ function thunder_indicator_field_widget_form_alter(&$element, FormStateInterface
  * @return array
  *   The widths and positions of the indicators.
  */
-function _thunder_indicator_get_width_and_pos($optimin, $optimax, $tolerance) {
+function _length_indicator_get_width_and_pos($optimin, $optimax, $tolerance) {
   $indicators = [];
 
   $min = $optimin - $tolerance;
