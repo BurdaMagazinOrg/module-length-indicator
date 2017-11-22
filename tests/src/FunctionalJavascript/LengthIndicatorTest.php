@@ -11,7 +11,7 @@ use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
 /**
  * Tests the UI for entity displays.
  *
- * @group field_ui
+ * @group length_indicator
  */
 class LengthIndicatorTest extends JavascriptTestBase {
 
