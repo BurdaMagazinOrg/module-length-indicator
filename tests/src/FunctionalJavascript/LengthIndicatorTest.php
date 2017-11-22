@@ -56,7 +56,7 @@ class LengthIndicatorTest extends JavascriptTestBase {
     $field_storage = FieldStorageConfig::create([
       'field_name' => $field_name,
       'entity_type' => 'entity_test',
-      'type' => $field_type
+      'type' => $field_type,
     ]);
     $field_storage->save();
 
@@ -140,7 +140,7 @@ class LengthIndicatorTest extends JavascriptTestBase {
    *
    * @param string $field_name
    *   The field to test.
-   * @param $class
+   * @param string $class
    *   A class that you expect the active indicator to have.
    * @param string $value
    *   (optional) Set the field to this value before testing the indicator.
@@ -157,7 +157,7 @@ class LengthIndicatorTest extends JavascriptTestBase {
   /**
    * Tests the length indicator widget settings form.
    */
-  public function _testLengthIndicatorSettings() {
+  public function testLengthIndicatorSettings() {
     $this->drupalGet('entity_test/structure/entity_test/form-display');
     $this->xpath('//input[@data-drupal-selector="edit-fields-string-settings-edit"]')[0]->click();
     $this->assertSession()->assertWaitOnAjaxRequest();
@@ -195,7 +195,11 @@ class LengthIndicatorTest extends JavascriptTestBase {
 
     // Check the values.
     $form_display = EntityFormDisplay::load('entity_test.entity_test.default');
-    $this->assertEquals(['indicator' => TRUE, 'indicator_opt' => ['optimin' => 15, 'optimax' => 30, 'tolerance' => 6]], $form_display->getRenderer('string')->getThirdPartySettings('length_indicator'));
+    $expected = [
+      'indicator' => TRUE,
+      'indicator_opt' => ['optimin' => 15, 'optimax' => 30, 'tolerance' => 6],
+    ];
+    $this->assertEquals($expected, $form_display->getRenderer('string')->getThirdPartySettings('length_indicator'));
   }
 
 }
