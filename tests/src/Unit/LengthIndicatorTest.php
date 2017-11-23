@@ -16,6 +16,9 @@ use Drupal\Tests\UnitTestCase;
  */
 class LengthIndicatorTest extends UnitTestCase {
 
+  /**
+   * {@inheritdoc}
+   */
   public function setUp() {
     parent::setUp();
     include_once __DIR__ . '/../../../length_indicator.module';
@@ -34,6 +37,7 @@ class LengthIndicatorTest extends UnitTestCase {
    * Data provider for testLengthIndicatorGetWidthAndPos().
    *
    * @return array
+   *   An array with of arguments for testLengthIndicatorGetWidthAndPos().
    */
   public function providerTestLengthIndicatorGetWidthAndPos() {
     return [
@@ -65,7 +69,7 @@ class LengthIndicatorTest extends UnitTestCase {
             'pos' => 21,
             'class' => 'bad',
           ],
-        ]
+        ],
       ],
       'zero_tolerance' => [
         10, 15, 0,
@@ -95,7 +99,7 @@ class LengthIndicatorTest extends UnitTestCase {
             'pos' => 16,
             'class' => 'bad',
           ],
-        ]
+        ],
       ],
       [
         100, 250, 75,
@@ -125,7 +129,7 @@ class LengthIndicatorTest extends UnitTestCase {
             'pos' => 326,
             'class' => 'bad',
           ],
-        ]
+        ],
       ],
     ];
   }
