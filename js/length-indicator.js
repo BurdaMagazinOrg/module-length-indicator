@@ -4,7 +4,7 @@
   Drupal.behaviors.length_indicator = {
     attach: function (context, settings) {
       $(context)
-        .find('.length-indicator-enabled')
+        .find('.js-length-indicator-enabled')
         .once('length-indicator')
         .each(function (index, element) {
           var $el = $(element);
@@ -20,8 +20,8 @@
 
     this.total = total;
 
-    this.allIndicators = $context.find('.indicator');
-    this.cursor = $context.find('.cursor');
+    this.allIndicators = $context.find('.length-indicator__indicator');
+    this.cursor = $context.find('.length-indicator__cursor');
 
     var self = this;
     this.$el.on('input', function (e) {
@@ -37,7 +37,7 @@
     position = position < 100 ? position : 100;
     this.cursor.css('left', position + '%');
 
-    this.allIndicators.removeClass('active');
+    this.allIndicators.removeClass('is-active');
 
     var coloredIndicator = this.allIndicators.eq(0);
     for (var i = 1; i < this.allIndicators.length; i++) {
@@ -49,7 +49,7 @@
         break;
       }
     }
-    coloredIndicator.addClass('active');
+    coloredIndicator.addClass('is-active');
   };
 
 })(Drupal, jQuery);
