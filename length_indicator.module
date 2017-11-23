@@ -170,9 +170,11 @@ function length_indicator_field_widget_form_alter(&$element, FormStateInterface 
  * @param int $optimin
  *   The optimum minimum.
  * @param int $optimax
- *   The optimum maximum.
+ *   The optimum maximum. This must be larger than $optimin. This is validated
+ *   on the widget settings form.
  * @param int $tolerance
- *   The tolerance.
+ *   The tolerance. This must be smaller than $optimin. This is validated on the
+ *   widget settings form.
  *
  * @return array
  *   The widths and positions of the indicators.
