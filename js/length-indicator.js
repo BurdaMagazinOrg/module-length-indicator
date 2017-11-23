@@ -4,11 +4,11 @@
   Drupal.behaviors.length_indicator = {
     attach: function (context, settings) {
       $(context)
-        .find('.js-length-indicator-enabled')
+        .find('[length-indicator-enabled]')
         .once('length-indicator')
         .each(function (index, element) {
           var $el = $(element);
-          var total = $el.data('total');
+          var total = $el.data('length-indicator-total');
 
           new Indicator($el, $el.closest('.form-wrapper'), total);
         });
