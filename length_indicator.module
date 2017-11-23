@@ -134,8 +134,8 @@ function _length_indicator_settings_tolerance(array $element, FormStateInterface
  */
 function length_indicator_field_widget_settings_summary_alter(&$summary, $context) {
   if (_length_indicator_widget_is_supported($context['widget']->getPluginId())) {
-    $inidcator = $context['widget']->getThirdPartySetting('length_indicator', 'indicator');
-    $indicator_string = $inidcator ? 'On' : 'Off';
+    $indicator = $context['widget']->getThirdPartySetting('length_indicator', 'indicator');
+    $indicator_string = $indicator ? 'On' : 'Off';
     $summary[] = 'Length indicator: ' . $indicator_string;
   }
 }
