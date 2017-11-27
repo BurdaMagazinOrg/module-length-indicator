@@ -147,11 +147,9 @@ function length_indicator_field_widget_form_alter(&$element, FormStateInterface 
   if (_length_indicator_widget_is_supported($context['widget']->getPluginId())) {
     if ($context['widget']->getThirdPartySetting('length_indicator', 'indicator')) {
       $element['#attached']['library'][] = 'length_indicator/length_indicator';
-      $element['value']['#attributes']['class'][] = 'length-indicator-enabled';
-
       $indicator_opt = $context['widget']->getThirdPartySetting('length_indicator', 'indicator_opt');
-      $element['value']['#attributes']['data-total'] = $indicator_opt['optimin'] + $indicator_opt['optimax'];
-
+      $element['value']['#attributes']['data-length-indicator-total'] = $indicator_opt['optimin'] + $indicator_opt['optimax'];
+      $element['value']['#attributes']['length-indicator-enabled'] = '';
       $element['length_indicator'] = [
         '#theme' => 'length_indicator',
         '#indicators' => _length_indicator_get_width_and_pos(
@@ -190,30 +188,30 @@ function _length_indicator_get_width_and_pos($optimin, $optimax, $tolerance) {
   $width = ($min / $total) * 100;
   $indicators[0]['width'] = $width;
   $indicators[0]['pos'] = 0;
-  $indicators[0]['class'] = 'bad';
+  $indicators[0]['class'] = 'length-indicator__indicator--bad';
   // Adding +1 to make max inclusive.
   $indicators[4]['width'] = $width;
   $indicators[4]['pos'] = $max + 1;
-  $indicators[4]['class'] = 'bad';
+  $indicators[4]['class'] = 'length-indicator__indicator--bad';
   $last = $width;
 
   $width = ($optimin / $total) * 100;
   $indicators[1]['width'] = $width - $last;
   $indicators[1]['pos'] = $min;
-  $indicators[1]['class'] = 'ok';
+  $indicators[1]['class'] = 'length-indicator__indicator--ok';
   $last = $width;
 
   $width = ($optimax / $total) * 100;
   $indicators[2]['width'] = $width - $last;
   $indicators[2]['pos'] = $optimin;
-  $indicators[2]['class'] = 'good';
+  $indicators[2]['class'] = 'length-indicator__indicator--good';
   $last = $width;
 
   $width = ($max / $total) * 100;
   // Adding +1 to make optimax inclusive.
   $indicators[3]['width'] = $width - $last;
   $indicators[3]['pos'] = $optimax + 1;
-  $indicators[3]['class'] = 'ok';
+  $indicators[3]['class'] = 'length-indicator__indicator--ok';
 
   ksort($indicators);
 

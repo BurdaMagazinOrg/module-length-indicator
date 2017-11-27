@@ -140,18 +140,18 @@ class LengthIndicatorTest extends JavascriptTestBase {
    *
    * @param string $field_name
    *   The field to test.
-   * @param string $class
-   *   A class that you expect the active indicator to have.
+   * @param string $class_modifier
+   *   The class modifier that you expect the active indicator to have.
    * @param string $value
    *   (optional) Set the field to this value before testing the indicator.
    */
-  protected function assertActiveElement($field_name, $class, $value = NULL) {
+  protected function assertActiveElement($field_name, $class_modifier, $value = NULL) {
     if (!is_null($value)) {
       $this->getSession()->getPage()->fillField($field_name . '[0][value]', $value);
     }
-    $active_elements = $this->xpath('//*[@id="edit-' . str_replace('_', '-', $field_name) . '-wrapper"]/div[2]/span[contains(@class, "active")]');
+    $active_elements = $this->xpath('//*[@id="edit-' . str_replace('_', '-', $field_name) . '-wrapper"]/div[2]/span[contains(@class, "is-active")]');
     $this->assertCount(1, $active_elements);
-    $this->assertContains($class, $active_elements[0]->getAttribute('class'), "$field_name field's active indicator has class '$class'");
+    $this->assertContains("length-indicator__indicator--$class_modifier", $active_elements[0]->getAttribute('class'), "$field_name field's active indicator has class modifier '$class_modifier'");
   }
 
   /**
