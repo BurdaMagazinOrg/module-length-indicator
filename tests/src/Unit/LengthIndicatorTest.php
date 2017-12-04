@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\length_indicator\Unit;
 
+use Drupal\length_indicator\GetWidthPos;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -30,7 +31,8 @@ class LengthIndicatorTest extends UnitTestCase {
    * @dataProvider providerTestLengthIndicatorGetWidthAndPos
    */
   public function testLengthIndicatorGetWidthAndPos($optimin, $optimax, $tolerance, array $expected) {
-    $this->assertEquals($expected, _length_indicator_get_width_and_pos($optimin, $optimax, $tolerance));
+    $service_length_indicator = new GetWidthPos();
+    $this->assertEquals($expected, $service_length_indicator->getWidthAndPosition($optimin, $optimax, $tolerance));
   }
 
   /**
