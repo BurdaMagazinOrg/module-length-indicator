@@ -2,7 +2,12 @@
 
 namespace Drupal\length_indicator;
 
-class GetWidhtPos {
+/**
+ * Class GetWidthPos.
+ *
+ * @package Drupal\length_indicator
+ */
+class GetWidthPos {
 
   /**
    * Gets the widths and positions for the indicator template.
@@ -13,8 +18,8 @@ class GetWidhtPos {
    *   The optimum maximum. This must be larger than $optimin. This is validated
    *   on the widget settings form.
    * @param int $tolerance
-   *   The tolerance. This must be smaller than $optimin. This is validated on the
-   *   widget settings form.
+   *   The tolerance. This must be smaller than $optimin. This is validated on
+   *   the widget settings form.
    *
    * @return array
    *   The widths and positions of the indicators.
