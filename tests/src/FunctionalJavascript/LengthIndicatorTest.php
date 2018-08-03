@@ -197,7 +197,12 @@ class LengthIndicatorTest extends JavascriptTestBase {
     $form_display = EntityFormDisplay::load('entity_test.entity_test.default');
     $expected = [
       'indicator' => TRUE,
-      'indicator_opt' => ['optimin' => 15, 'optimax' => 30, 'tolerance' => 6],
+      'indicator_opt' => [
+        'optimin' => 15,
+        'optimax' => 30,
+        'tolerance' => 6,
+        'unit' => 'char',
+      ],
     ];
     $this->assertEquals($expected, $form_display->getRenderer('string')->getThirdPartySettings('length_indicator'));
   }
