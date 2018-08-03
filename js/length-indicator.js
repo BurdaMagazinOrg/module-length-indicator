@@ -1,5 +1,5 @@
 (function (Drupal, $) {
-
+  'use strict';
   Drupal.behaviors.length_indicator = {
     attach: function (context, settings) {
       $(context)
@@ -69,7 +69,7 @@
    * @return {HTMLElement} The created hidden element.
    */
   Indicator.prototype.createMeasurementElement = function () {
-    const hiddenElement = document.createElement('div');
+    var hiddenElement = document.createElement('div');
 
     hiddenElement.id = 'length-indicator-measure';
 
@@ -94,7 +94,7 @@
    * @return {number} The width in pixels.
    */
   Indicator.prototype.measureTextWidth = function (text) {
-    let element = document.getElementById('length-indicator-measure');
+    var element = document.getElementById('length-indicator-measure');
     if (!element) {
       element = this.createMeasurementElement();
     }
