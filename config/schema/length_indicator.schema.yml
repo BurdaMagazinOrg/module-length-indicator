@@ -9,6 +9,9 @@ field.widget.third_party.length_indicator:
       type: mapping
       label: 'Length indicator options'
       mapping:
+        unit:
+          type: string
+          label: 'Unit for length (char or px)'
         optimin:
           type: integer
           label: 'The minimum length of a good value'
