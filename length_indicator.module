@@ -98,6 +98,40 @@ function length_indicator_field_widget_third_party_settings_form(WidgetInterface
       '#element_validate' => ['_length_indicator_settings_tolerance'],
     ];
 
+    $element['indicator_opt']['unit_px'] = [
+      '#type' => 'fieldset',
+      '#title' => t('Pixel settings'),
+      '#states' => [
+        'visible' => [
+          ':input[name="fields[' . $field_definition->getName() . '][settings_edit_form][third_party_settings][length_indicator][indicator_opt][unit]"]' => [
+            'value' => 'px',
+          ],
+        ],
+      ],
+    ];
+
+    $element['indicator_opt']['unit_px']['font_weight'] = [
+      '#type' => 'number',
+      '#title' => t('Font weight'),
+      '#default_value' => isset($indicator_opt['unit_px']['font_weight']) ? $indicator_opt['unit_px']['font_weight'] : 400,
+      '#required' => TRUE,
+      '#min' => 0,
+    ];
+
+    $element['indicator_opt']['unit_px']['font_size'] = [
+      '#type' => 'number',
+      '#title' => t('Font weight'),
+      '#default_value' => isset($indicator_opt['unit_px']['font_size']) ? $indicator_opt['unit_px']['font_size'] : 18,
+      '#required' => TRUE,
+      '#min' => 0,
+    ];
+
+    $element['indicator_opt']['unit_px']['font_family'] = [
+      '#type' => 'textfield',
+      '#title' => t('Font weight'),
+      '#default_value' => isset($indicator_opt['unit_px']['font_family']) ? $indicator_opt['unit_px']['font_family'] : 'arial,sans-serif',
+      '#required' => TRUE,
+    ];
   }
   return $element;
 }
@@ -157,6 +191,7 @@ function length_indicator_field_widget_form_alter(&$element, FormStateInterface 
       $indicator_opt = $context['widget']->getThirdPartySetting('length_indicator', 'indicator_opt');
       $element['value']['#attributes']['data-length-indicator-total'] = $indicator_opt['optimin'] + $indicator_opt['optimax'];
       $element['value']['#attributes']['data-length-indicator-unit'] = $indicator_opt['unit'];
+      $element['value']['#attributes']['data-length-indicator-font'] = sprintf('%s %spx %s', $indicator_opt['unit_px']['font_weight'], $indicator_opt['unit_px']['font_size'], $indicator_opt['unit_px']['font_family']);
       $element['value']['#attributes']['length-indicator-enabled'] = '';
       $service_length_indicator = \Drupal::service('length_indicator.get_width_pos');
       $element['length_indicator'] = [
