@@ -6,14 +6,14 @@ use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
  * Tests the UI for entity displays.
  *
  * @group length_indicator
  */
-class LengthIndicatorTest extends JavascriptTestBase {
+class LengthIndicatorTest extends WebDriverTestBase {
 
   /**
    * {@inheritdoc}
