@@ -202,6 +202,11 @@ class LengthIndicatorTest extends JavascriptTestBase {
         'optimax' => 30,
         'tolerance' => 6,
         'unit' => 'char',
+        'unit_px' => [
+          'font_weight' => 400,
+          'font_size' => 18,
+          'font_family' => 'arial,sans-serif',
+        ],
       ],
     ];
     $this->assertEquals($expected, $form_display->getRenderer('string')->getThirdPartySettings('length_indicator'));
