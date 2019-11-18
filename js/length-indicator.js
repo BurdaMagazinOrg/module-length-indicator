@@ -34,8 +34,13 @@
     var length = this.$el.val().length;
     var position = (length / this.total) * 100;
 
+    var positionDir = 'left';
+    if ($('html').attr('dir') === 'rtl') {
+      positionDir = 'right';
+    }
+
     position = position < 100 ? position : 100;
-    this.cursor.css('left', position + '%');
+    this.cursor.css(positionDir, position + '%');
 
     this.allIndicators.removeClass('is-active');
 
