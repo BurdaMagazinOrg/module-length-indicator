@@ -35,7 +35,7 @@
     var position = (length / this.total) * 100;
 
     var positionDir = 'left';
-    if ($("html").attr("dir") == "rtl") {
+    if ($('html').attr('dir') === 'rtl') {
       positionDir = 'right';
     }
 
