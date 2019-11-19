@@ -53,6 +53,8 @@ MAINTAINERS
 -----------
 
  * Timo Welde (tjwelde) - https://www.drupal.org/u/tjwelde
+ * Daniel Bosen (daniel.bosen) - https://www.drupal.org/u/danielbosen
+ * Christian Fritsch (chr.fritsch) - https://www.drupal.org/u/chrfritsch
 
 Supporting organization:
 
