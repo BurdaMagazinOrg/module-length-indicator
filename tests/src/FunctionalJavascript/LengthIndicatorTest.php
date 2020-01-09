@@ -18,7 +18,12 @@ class LengthIndicatorTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['length_indicator', 'field_ui', 'entity_test'];
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = ['length_indicator', 'field_ui', 'entity_test'];
 
   /**
    * {@inheritdoc}
