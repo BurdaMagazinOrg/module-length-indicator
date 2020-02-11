@@ -30,7 +30,7 @@ matrix:
     - env: DRUPAL_TESTING_DRUPAL_VERSION=~8.8.0
 
 before_install:
-  - composer global require thunder/drupal-testing:dev-fix/stable-project
+  - composer global require thunder/drupal-testing:dev-fix/stable-project#a62d83be853c948560a8c39e9a35be70fd32055b
 
 script:
   - test-drupal-project
