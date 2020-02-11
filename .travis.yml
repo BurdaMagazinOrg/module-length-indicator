@@ -24,13 +24,13 @@ env:
 
 matrix:
   include:
-    - env: DRUPAL_TRAVIS_DRUPAL_VERSION=9.0.x-dev
-    - env: DRUPAL_TRAVIS_DRUPAL_VERSION=~8.8.0
+    - env: DRUPAL_TESTING_DRUPAL_VERSION=9.0.x-dev
+    - env: DRUPAL_TESTING_DRUPAL_VERSION=~8.8.0
       php: 7.2
-    - env: DRUPAL_TRAVIS_DRUPAL_VERSION=~8.8.0
+    - env: DRUPAL_TESTING_DRUPAL_VERSION=~8.8.0
 
 before_install:
-  - composer global require thunder/travis
+  - composer global require thunder/drupal-testing
 
 script:
   - test-drupal-project
