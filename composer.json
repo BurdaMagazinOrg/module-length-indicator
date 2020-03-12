@@ -9,7 +9,7 @@
     "extra": {
         "patches": {
             "drupal/core": {
-                "PhpUnit 8 tests breaking because of compatibility issue with setUp()": "https://www.drupal.org/files/issues/2020-02-17/3063887-92.patch"
+                "PhpUnit 8 tests breaking because of compatibility issue with setUp()": "https://www.drupal.org/files/issues/2020-03-12/3114041-10.patch"
             }
         }
     }
