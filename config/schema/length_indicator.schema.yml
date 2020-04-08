@@ -9,6 +9,9 @@ field.widget.third_party.length_indicator:
       type: mapping
       label: 'Length indicator options'
       mapping:
+        unit:
+          type: string
+          label: 'Unit for length (char or px)'
         optimin:
           type: integer
           label: 'The minimum length of a good value'
@@ -18,3 +21,16 @@ field.widget.third_party.length_indicator:
         tolerance:
           type: integer
           label: 'Tolerance'
+        unit_px:
+          type: mapping
+          label: 'Pixel settings'
+          mapping:
+            font_family:
+              type: string
+              label: 'font-family for px element'
+            font_weight:
+              type: integer
+              label: 'font-weight for px element'
+            font_size:
+              type: integer
+              label: 'font-size for px element'
